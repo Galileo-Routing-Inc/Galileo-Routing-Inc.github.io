@@ -1,3 +1,4 @@
+/*
 $(document).ready(function(){
     
     (function($) {
@@ -55,31 +56,26 @@ $(document).ready(function(){
                 }
             },
             submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    type:"POST",
-                    data: $(form).serialize(),
-                    url:"contact_process.php",
-                    success: function() {
-                        $('#contactForm :input').attr('disabled', 'disabled');
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $(this).find(':input').attr('disabled', 'disabled');
-                            $(this).find('label').css('cursor','default');
-                            $('#success').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#success').modal('show');
-                        })
-                    },
-                    error: function() {
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $('#error').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#error').modal('show');
-                        })
-                    }
-                })
+                console.log(form);
             }
         })
     })
         
  })(jQuery)
 })
+*/
+
+const NEWLINE_ENCODING = '%0A'
+
+function onContactBtnClick() {
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const school = document.getElementById("school").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
+
+    const body = `${NEWLINE_ENCODING}${message}${NEWLINE_ENCODING}${NEWLINE_ENCODING}From,${NEWLINE_ENCODING}${name}${NEWLINE_ENCODING}${school}${NEWLINE_ENCODING}${email}${NEWLINE_ENCODING}`;
+    
+    window.location.href = `mailto:galileorouting@gmail.com?subject=${subject}&body=${body}`;
+}
